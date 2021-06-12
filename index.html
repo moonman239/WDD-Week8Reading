@@ -3,8 +3,16 @@
         <title>Week 8 Reading</title>
         <script>
             var canvas;
+            // Get the mouse's current position.
+            function getCurrentPosition(e)
+            {
+                var rect = e.target.getBoundingClientRect();
+                var x = e.clientX - rect.left; //x position within the element.
+                var y = e.clientY - rect.top;  //y position within the element.
+                return {x:x,y:y};
+            }
             // Allow the user to draw on screen.
-            function beginDrawing()
+            function beginDrawing(event)
             {
                 let context = canvas.getContext("2d");
                 context.strokeStyle = "red";
@@ -12,7 +20,9 @@
                 // Since there's no predefined thing to draw
                 // use a path.
                 context.beginPath();
-                context.moveTo(75,50);
+                // Move the canvas to wherever the mouse was on mouse down.
+                let mouseLocation = getCurrentPosition(event);
+                context.moveTo(mouseLocation.x,mouseLocation.y);
                 context.lineTo(100,75);
                 context.stroke();
             }
