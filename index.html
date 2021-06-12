@@ -6,8 +6,15 @@
             function draw()
             {
                 let canvas = document.getElementById("drawingCanvas");
-                let context = canvas.getContext("2D");
-
+                let context = canvas.getContext("2d");
+                context.strokeStyle = "red";
+                context.fillStyle = "black";
+                // Since there's no predefined thing to draw
+                // use a path.
+                context.beginPath();
+                context.moveTo(75,50);
+                context.lineTo(100,75);
+                context.stroke();
             }
         </script>
         <style>
@@ -18,8 +25,8 @@
     </head>
     <body>
         <h3>Click the canvas to begin drawing.</h3>
-        <canvas id="drawingCanvas" width="200" height="100">
+        <canvas id="drawingCanvas" width="200" height="200" onmousedown="draw()">
             Your browser does not support the HTML canvas tag.
         </canvas>
-    </body>
-</html>
+        </body>
+        </html>
