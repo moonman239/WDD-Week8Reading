@@ -3,6 +3,7 @@
         <title>Week 8 Reading</title>
         <script>
             var canvas;
+            let draw = false;
             // Get the mouse's current position.
             function getCurrentPosition(e)
             {
@@ -16,16 +17,16 @@
             // Allow the user to draw on screen.
             function beginDrawing(event)
             {
+                draw = true;
+            }
+            // Keep drawing as long as the mouseUp event has not been triggered.
+            function keepDrawing(event)
+            {
+                if (draw == false)
+                    return;
                 let context = canvas.getContext("2d");
-                context.strokeStyle = "red";
-                context.fillStyle = "black";
-                // Since there's no predefined thing to draw
-                // use a path.
-                context.beginPath();
-                // Move the canvas to wherever the mouse was on mouse down.
                 let mouseLocation = getCurrentPosition(event);
-                context.moveTo(mouseLocation.x,mouseLocation.y);
-                context.lineTo(100,75);
+                context.lineTo(mouseLocation.x,mouseLocation.y);
                 context.stroke();
             }
         </script>
@@ -43,6 +44,7 @@
         <script>
             canvas = document.getElementById("drawingCanvas");
             canvas.onmousedown = beginDrawing;
+            canvas.onmousemove = keepDrawing;
             </script>
         </body>
         </html>
