@@ -2,10 +2,10 @@
     <head>
         <title>Week 8 Reading</title>
         <script>
+            var canvas;
             // Allow the user to draw on screen.
-            function draw()
+            function beginDrawing()
             {
-                let canvas = document.getElementById("drawingCanvas");
                 let context = canvas.getContext("2d");
                 context.strokeStyle = "red";
                 context.fillStyle = "black";
@@ -25,8 +25,12 @@
     </head>
     <body>
         <h3>Click the canvas to begin drawing.</h3>
-        <canvas id="drawingCanvas" width="200" height="200" onmousedown="draw()">
+        <canvas id="drawingCanvas" width="200" height="200">
             Your browser does not support the HTML canvas tag.
         </canvas>
+        <script>
+            canvas = document.getElementById("drawingCanvas");
+            canvas.onmousedown = beginDrawing;
+            </script>
         </body>
         </html>
