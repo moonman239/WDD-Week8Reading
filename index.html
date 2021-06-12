@@ -29,6 +29,10 @@
                 context.lineTo(mouseLocation.x,mouseLocation.y);
                 context.stroke();
             }
+            // Stop drawing once mouseUp is triggered.
+            function stopDrawing(event){
+                draw = false;
+            }
         </script>
         <style>
             #drawingCanvas {
@@ -45,6 +49,8 @@
             canvas = document.getElementById("drawingCanvas");
             canvas.onmousedown = beginDrawing;
             canvas.onmousemove = keepDrawing;
+            canvas.onmouseup = stopDrawing;
+            canvas.onmouseout = stopDrawing;
             </script>
         </body>
         </html>
